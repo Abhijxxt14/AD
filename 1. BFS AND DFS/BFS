@@ -1,0 +1,59 @@
+import java.util.LinkedList;
+import java.util.Queue;
+public class BFS {
+   
+    public static void bfs(int[][] adjacencyMatrix, int startNode) {
+        int numberOfNodes = adjacencyMatrix.length;
+        boolean[] visited = new boolean[numberOfNodes];
+        // Queue for BFS 
+        Queue < Integer > queue = new LinkedList < > ();
+        // Start with the given node 
+        visited[startNode] = true;
+        queue.add(startNode);
+        System.out.println("BFS Traversal: ");
+
+
+        while (!queue.isEmpty()) {
+            int currentNode = queue.poll();
+            System.out.print(currentNode + " ");
+            // Traverse neighbors of the current node 
+            for (int i = 0; i < numberOfNodes; i++) {
+                if (adjacencyMatrix[currentNode][i] == 1 && !visited[i]) {
+                    visited[i] = true;
+                    queue.add(i);
+                }
+            }
+        }
+    }
+    public static void main(String[] args) {
+        // Example graph as an adjacency matrix 
+        int[][] adjacencyMatrix = {
+            {
+                0,
+                1,
+                1,
+                0
+            },
+            {
+                1,
+                0,
+                1,
+                1
+            },
+            {
+                1,
+                1,
+                0,
+                1
+            },
+            {
+                0,
+                1,
+                1,
+                0
+            }
+        };
+        // Start BFS from node 0 
+        bfs(adjacencyMatrix, 3);
+    }
+}
