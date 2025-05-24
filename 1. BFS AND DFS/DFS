@@ -1,0 +1,57 @@
+public class DFSRecursive {
+    private static void dfs(int[][] graph, boolean[] visited, int node) {
+        // Mark the current node as visited 
+        visited[node] = true;
+        System.out.print(node + " ");
+        // Recursively visit all unvisited neighbours 
+        for (int i = 0; i < graph[node].length; i++) {
+            if (graph[node][i] == 1 && !visited[i]) {
+                dfs(graph, visited, i);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        // Hard-coded adjacency matrix 
+        int[][] graph = {
+            {
+                0,
+                1,
+                1,
+                0,
+                0
+            }, // Vertex 0 connected to 1 and 2 
+            {
+                1,
+                0,
+                0,
+                1,
+                1
+            }, // Vertex 1 connected to 0, 3, and 4 
+            {
+                1,
+                0,
+                0,
+                0,
+                0
+            }, // Vertex 2 connected to 0 
+            {
+                0,
+                1,
+                0,
+                0,
+                0
+            }, // Vertex 3 connected to 1 
+            {
+                0,
+                1,
+                0,
+                0,
+                0
+            } // Vertex 4 connected to 1 
+        };
+        int numberOfNodes = graph.length;
+        boolean[] visited = new boolean[numberOfNodes];
+        System.out.println("DFS Traversal starting from node 0:");
+        dfs(graph, visited, 2); // Start DFS from node 2 
+    }
+}
